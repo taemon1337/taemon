@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
-  "name": "ngbp",
-  "version": "0.3.2",
-  "homepage": "https://github.com/ngbp/ngbp",
+  "author": "Taemon",
+  "name": "taemon",
+  "version": "0.0.1",
+  "homepage": "https://github.com/taemon1337/taemon",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/ngbp/ngbp/master/LICENSE"
+    "url": "https://raw.github.com/taemon1337/taemon/master/LICENSE"
   },
-  "bugs": "https://github.com/ngbp/ngbp/issues",
+  "bugs": "https://github.com/taemon1337/taemon/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ngbp/ngbp.git"
+    "url": "git@github.com:taemon1337/taemon.git"
   },
   "dependencies": {},
   "devDependencies": {
