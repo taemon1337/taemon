@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="taemon" ng-strict-di>
+<html ng-app="taemon" ng-controller="AppCtrl">
   <head>
-    <title ng-bind="pageTitle" ng-controller="AppCtrl"></title>
+    <title ng-bind="pageTitle"></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
     <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -17,14 +17,11 @@
   </head>
   <body>
   
-    <div class="container-fluid" ui-view="navbar"></div>
+    <div ui-view="nav"></div>
+    
     <div class="container-fluid" ui-view="main"></div>
+    
+    <footer class="footer" ui-view="footer"></footer>
 
-    <footer class="footer">
-      <div class="container-fluid">
-        <div class="footer-inner">
-        </div>
-      </div>
-    </footer>
   </body>
 </html>

@@ -259,6 +259,18 @@ module.exports = function ( grunt ) {
      * must be imported from this file.
      */
     less: {
+      bootswatch: {
+        options: {
+          cleancss: true, // minify
+          report: 'min' // minification results
+        },
+        expand: true,                                 // set to true to enable options following options:
+        cwd: "src/less/bootswatch",                   // all sources relative to this path
+        src: "**/*.less",                             // source folder patterns to match, relative to cwd
+        dest: "<%= build_dir %>/assets/bootswatch",   // destination folder path prefix
+        ext: ".min.css",                              // replace any existing extension with this value in dest folder
+        flatten: true                                 // flatten folder structure to single level
+      },
       build: {
         files: {
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
@@ -307,7 +319,7 @@ module.exports = function ( grunt ) {
 
     /**
      * `coffeelint` does the same as `jshint`, but for CoffeeScript.
-     * CoffeeScript is not the default in ngBoilerplate, so we're just using
+     * CoffeeScript is not the default in taemon, so we're just using
      * the defaults here.
      */
     coffeelint: {
@@ -465,7 +477,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'jshint:src', /*'karma:unit:run',*/ 'copy:build_appjs' ]
       },
 
       /**
@@ -476,7 +488,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.coffee %>'
         ],
-        tasks: [ 'coffeelint:src', 'coffee:source', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'coffeelint:src', 'coffee:source', /*'karma:unit:run',*/ 'copy:build_appjs' ]
       },
 
       /**
@@ -516,7 +528,7 @@ module.exports = function ( grunt ) {
         files: [ 'src/**/*.less' ],
         tasks: [ 'less:build' ]
       },
-
+      
       /**
        * When a JavaScript unit test file changes, we only want to lint it and
        * run the unit tests. We don't want to do any live reloading.
@@ -539,7 +551,7 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.coffeeunit %>'
         ],
-        tasks: [ 'coffeelint:test', 'karma:unit:run' ],
+        tasks: [ 'coffeelint:test' /*, 'karma:unit:run'*/ ],
         options: {
           livereload: false
         }
@@ -557,7 +569,7 @@ module.exports = function ( grunt ) {
    * before watching for changes.
    */
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+  grunt.registerTask( 'watch', [ 'build', /*'karma:unit',*/ 'delta' ] );
 
   /**
    * The default task is to build and compile.
@@ -570,8 +582,8 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'build', [
     'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build', 'karmaconfig',
-    'karma:continuous' 
+    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build'
+//    'karmaconfig', 'karma:continuous' 
   ]);
 
   /**
@@ -581,6 +593,11 @@ module.exports = function ( grunt ) {
   grunt.registerTask( 'compile', [
     'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
+
+  /**
+   *  Convert all bootswatch LESS themes to CSS
+   */ 
+  grunt.registerTask( 'bootswatch', ['less:bootswatch']);
 
   /**
    * A utility function to get all app JavaScript sources.
@@ -597,6 +614,15 @@ module.exports = function ( grunt ) {
   function filterForCSS ( files ) {
     return files.filter( function ( file ) {
       return file.match( /\.css$/ );
+    });
+  }
+  
+  /**
+   * A utility function to get all app LESS sources.
+   */
+  function filterForLESS ( files ) {
+    return files.filter( function ( file ) {
+      return file.match( /\.less$/ );
     });
   }
 
@@ -627,6 +653,7 @@ module.exports = function ( grunt ) {
       }
     });
   });
+  
 
   /**
    * In order to avoid having to specify manually the files needed for karma to

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="landing-page">
+        <img alt="taemon.net" src="{{ brandImage }}" style="height:200%;margin-top:-5%;">
+      </a>
+    </div>
+
+  <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+  
+      <ul class="nav navbar-nav">
+          <li>
+            <a ui-sref="home.root">Home</a>
+          </li>
+          <li>
+            <a ui-sref="home.about">About</a>
+          </li>
+          <li dropdown>
+              <a href="#" dropdown-toggle>
+                  Blogs
+                  <span class='caret'></span>
+              </a>
+              <tree tree='blogTree'></tree>
+          </li>
+          <li dropdown>
+              <a href="#" dropdown-toggle>
+                  Apps
+                  <span class='caret'></span>
+              </a>
+              <tree tree='appTree'></tree>
+          </li>
+      </ul>
+      
+      <div ui-view="oauth"></div>
+      <div ui-view="theme-picker"></div>
+
+      <ul class="nav navbar-nav pull-right">
+        <li dropdown>
+          <a href="#" dropdown-toggle>
+            <i class="fa fa-cog"></i>
+            <span class='caret'></span>
+          </a>
+          <tree class="pull-right" tree='cogTree'></tree>
+        </li>
+      </ul>
+  </div>
+</nav>

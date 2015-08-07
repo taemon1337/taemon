@@ -1,19 +1,24 @@
-angular.module( 'ngBoilerplate.about', [
+angular.module( 'taemon.about', [
   'ui.router',
   'placeholders',
+  'taemon.navbar',
   'ui.bootstrap'
 ])
 
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'about', {
+  $stateProvider.state( 'home.about', {
     url: '/about',
     views: {
-      "main": {
+      "main@": {
         controller: 'AboutCtrl',
         templateUrl: 'about/about.tpl.html'
+      },
+      "nav@": {
+        controller: "NavbarCtrl",
+        templateUrl: "navbar/navbar.tpl.html"
       }
     },
-    data:{ pageTitle: 'What is It?' }
+    data:{ pageTitle: 'About' }
   });
 })
 
