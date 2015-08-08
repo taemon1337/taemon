@@ -1,9 +1,13 @@
 <ul class="nav navbar-nav pull-right">
-  <li dropdown>
-    <a href="#" dropdown-toggle>
+  <li dropdown on-toggle="toggled(open)">
+    <a id="themes-dropdown" href dropdown-toggle>
       {{ theme.name }}
       <span class='caret'></span>
     </a>
-    <tree class="pull-right" tree='themeTree'></tree>
+    <ul class="dropdown-menu pull-right" aria-labelledby="themes-dropdown">
+      <li ng-repeat="theme in themeTree">
+        <a href ng-click="setTheme(theme)">{{ theme.name }}</a>
+      </li>
+    </ul>
   </li>
 </ul>

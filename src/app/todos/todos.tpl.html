@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 round">
+
+    <h3> Honey-Do List </h3>
+
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="todo in [newTodo]" ng-init="editing = true;" ng-include="'todo-item-template'"></li>
+      
+      <li class="list-group-item" ng-repeat="todo in todos" ng-include="'todo-item-template'"></li>
+    </ul>
+
+  </div>
+</div>
+
+<script type="text/ng-template" id="todo-item-template">
+  <div class="row" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+    <div class="col-xs-2">
+      <span ng-hide="editing" ng-click="todo.complete = !todo.complete" ng-class="{ 'fa-square-o': !todo.complete, 'fa-check-square-o': todo.complete }" class="fa fa-3x pointer"></span>
+    </div>
+    
+    <div class="col-xs-8" ng-dblclick="editing = !editing">
+      <form ng-show="editing" ng-submit="update(todo)">
+        <input type='text' class='form-control full input-lg' value="{{ todo.name }}" placeholder="What needs to be done?" />
+      </form>
+      <h6 ng-show="!editing" ng-class="{ 'strikethrough': todo.complete }" class="fa-2x">{{ todo.name }}</h6>
+    </div>
+    
+    <div class="col-xs-2" ng-show="hovering && !editing">
+      <span ng-click="" class="fa fa-2x fa-trash-o pull-right pointer"></span>
+    </div>
+  </div>
+</script>
+

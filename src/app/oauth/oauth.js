@@ -9,8 +9,9 @@ angular.module( 'taemon.oauth', [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state('oauth', {
+      parent: 'home.navbar',
       views: {
-        "oauth@navbar": {
+        "oauth": {
           controller: "OauthCtrl",
           templateUrl: "oauth/oauth.tpl.html"
         }

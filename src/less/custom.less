@@ -1,0 +1,69 @@
+
+/*
+ *
+  @brand-primary
+  @text-color
+  @link-color
+  @navbar-default-color
+  @navbar-default-bg
+  @navbar-default-brand-color
+ *
+ */
+
+.no-margin {
+  margin:0px;
+}
+.no-padding {
+  padding:0px;
+}
+
+.border-radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.round {
+  .border-radius();
+}
+.btn-round {
+  .border-radius(15px);
+}
+
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000) {
+  -webkit-box-shadow: @arguments;
+     -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+
+.bg-brand {
+  background-color:@navbar-default-brand-color;
+  color: @text-color;
+}
+
+.border-brand {
+  border: 1px solid @navbar-default-brand-color;
+}
+.border-link-color {
+  border: 1px solid @link-color;
+}
+
+/* Make our textarea fill their parent div */
+textarea.full {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.full {
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}

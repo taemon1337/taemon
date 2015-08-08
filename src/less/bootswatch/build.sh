@@ -13,7 +13,8 @@ for path in ../../../vendor/bootswatch/*/; do
     b1="@import '../../../../vendor/bootstrap/less/bootstrap.less';"
     b2="@import '../../../../vendor/bootswatch/$theme/bootswatch.less';"
     v1="@import '../../../../vendor/bootswatch/$theme/variables.less';"
-    less="$b1\n$b2\n$v1"
+    v2="@import '../../variables.less';"
+    less="$b1\n$b2\n$v1\n$v2";
   
     if [ ! -d "$theme" ]; then
       mkdir $theme

@@ -14,8 +14,12 @@
  */
 angular.module( 'taemon.home', [
   'ui.router',
+  'taemon.about',
+  'taemon.blogs',
+  'taemon.todos',
   'taemon.navbar',
-  'taemon.about'
+  'taemon.oauth',
+  'taemon.themepicker'
 ])
 
 /**
@@ -26,11 +30,23 @@ angular.module( 'taemon.home', [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'home', {
-      abstract: true,
+      url: '/home',
       views: {
         "main@": {
           controller: 'HomeCtrl',
           templateUrl: 'home/home.tpl.html'
+        },
+        "nav@": {
+          controller: "NavbarCtrl",
+          templateUrl: "navbar/navbar.tpl.html"
+        },
+        "oauth@home": {
+          controller: "OauthCtrl",
+          templateUrl: "oauth/oauth.tpl.html"
+        },
+        "theme-picker@home": {
+          controller: "ThemePickerCtrl",
+          templateUrl: "theme-picker/theme-picker.tpl.html"
         }
       },
       data:{ pageTitle: 'Home' }
