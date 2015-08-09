@@ -30,6 +30,10 @@ angular.module( 'taemon.navbar', [
     { name: 'Leet', link: 'leet' }
   ];
   
+  $scope.babyTree = [
+    { name: 'Say the letter', link: 'say-letter' }
+  ];
+  
   $scope.cogTree = [
     { name: 'Settings', link: 'settings' },
     { name: 'Docker Manager', link: 'docker' },

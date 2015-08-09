@@ -63,6 +63,7 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/jquery/dist/jquery.js',
+      'vendor/underscore/underscore.js',
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
@@ -70,7 +71,8 @@ module.exports = {
       'vendor/angular-ui-utils/modules/route/route.js',
       'vendor/ngstorage/ngStorage.js',
       'vendor/oauth-ng/dist/oauth-ng.js',
-      'node_modules/ui-navbar/dist/js/ui-navbar.js'
+      'node_modules/ui-navbar/dist/js/ui-navbar.js',
+      'vendor/restangular/dist/restangular.js'
     ],
     css: [
       'node_modules/ui-navbar/dist/css/ui-navbar.css'

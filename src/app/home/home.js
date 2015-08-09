@@ -19,6 +19,7 @@ angular.module( 'taemon.home', [
   'taemon.todos',
   'taemon.navbar',
   'taemon.oauth',
+  'taemon.sayLetter',
   'taemon.themepicker'
 ])
 
