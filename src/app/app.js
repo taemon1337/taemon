@@ -3,14 +3,17 @@ angular.module( 'taemon', [
   'templates-common',
   'taemon.landingpage',
   'taemon.home',
-  'ui.router'
+  'ui.router',
+  'js-data'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, DSHttpAdapterProvider ) {
+  DSHttpAdapterProvider.defaults.basePath = "/taemon"; // set base path for entire app
   $urlRouterProvider.otherwise( '/' );
 })
 
-.run( function run () {
+.run( function run ( DS, DSHttpAdapter) {
+  DS.registerAdapter('http',DSHttpAdapter, {});
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {

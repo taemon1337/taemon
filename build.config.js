@@ -72,7 +72,9 @@ module.exports = {
       'vendor/ngstorage/ngStorage.js',
       'vendor/oauth-ng/dist/oauth-ng.js',
       'node_modules/ui-navbar/dist/js/ui-navbar.js',
-      'vendor/restangular/dist/restangular.js'
+      'vendor/js-data/dist/js-data-debug.js',
+      'vendor/js-data-angular/dist/js-data-angular.js',
+      'vendor/js-data-http/dist/js-data-http.js'
     ],
     css: [
       'node_modules/ui-navbar/dist/css/ui-navbar.css'

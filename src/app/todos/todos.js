@@ -2,7 +2,7 @@ angular.module( 'taemon.todos', [
   'ui.router',
   'placeholders',
   'ui.bootstrap',
-  'Api'
+  'Todo'
 ])
 
 .config(function config( $stateProvider ) {
@@ -21,13 +21,13 @@ angular.module( 'taemon.todos', [
   ;
 })
 
-.controller( 'TodosCtrl', function TodosCtrl( $scope, Api ) {
-
-  window.scope = $scope;
+.controller( 'TodosCtrl', function TodosCtrl( $scope, Todo ) {
 
   $scope.newTodo = {};
+  $scope.todos = [];
   
-  $scope.todos = Api.all('todos').getList().$object;
+  Todo.findAll();
+  Todo.bindAll({}, $scope, 'todos');
   
   $scope.hoverIn = function() {
     this.hovering = true;

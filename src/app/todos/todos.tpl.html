@@ -15,18 +15,18 @@
 <script type="text/ng-template" id="todo-item-template">
   <div class="row" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
     <div class="col-xs-2">
-      <span ng-hide="editing" ng-click="todo.complete = !todo.complete" ng-class="{ 'fa-square-o': !todo.complete, 'fa-check-square-o': todo.complete }" class="fa fa-3x pointer"></span>
+      <span ng-hide="editing" ng-click="todo.DSUpdate({ complete: !complete })" ng-class="{ 'fa-square-o': !todo.complete, 'fa-check-square-o': todo.complete }" class="fa fa-3x pointer"></span>
     </div>
     
     <div class="col-xs-8" ng-dblclick="editing = !editing">
-      <form ng-show="editing" ng-submit="update(todo)">
+      <form ng-show="editing" ng-submit="todo.DSUpdate({ name: todo.name })">
         <input type='text' class='form-control full input-lg' value="{{ todo.name }}" placeholder="What needs to be done?" />
       </form>
       <h6 ng-show="!editing" ng-class="{ 'strikethrough': todo.complete }" class="fa-2x">{{ todo.name }}</h6>
     </div>
     
     <div class="col-xs-2" ng-show="hovering && !editing">
-      <span ng-click="" class="fa fa-2x fa-trash-o pull-right pointer"></span>
+      <span ng-click="todo.DSDestroy()" class="fa fa-2x fa-trash-o pull-right pointer"></span>
     </div>
   </div>
 </script>
