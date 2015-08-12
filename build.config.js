@@ -65,6 +65,7 @@ module.exports = {
       'vendor/jquery/dist/jquery.js',
       'vendor/underscore/underscore.js',
       'vendor/angular/angular.js',
+      'vendor/firebase/firebase.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
@@ -73,11 +74,20 @@ module.exports = {
       'vendor/oauth-ng/dist/oauth-ng.js',
       'node_modules/ui-navbar/dist/js/ui-navbar.js',
       'vendor/js-data/dist/js-data-debug.js',
+//      'vendor/js-data-http/dist/js-data-http.js',
+      'vendor/js-data-firebase/dist/js-data-firebase.js',
       'vendor/js-data-angular/dist/js-data-angular.js',
-      'vendor/js-data-http/dist/js-data-http.js'
+      'vendor/ace-builds/src/ace.js',
+      'vendor/angular-ui-ace/ui-ace.js',
+      'vendor/ng-flow/dist/ng-flow-standalone.js',
+      'vendor/firepad/dist/firepad.js',
+      'vendor/api-check/dist/api-check.js',
+      'vendor/angular-formly/dist/formly.js',
+      'vendor/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js'
     ],
     css: [
-      'node_modules/ui-navbar/dist/css/ui-navbar.css'
+      'node_modules/ui-navbar/dist/css/ui-navbar.css',
+      'vendor/firepad/dist/firepad.css'
     ],
     bootswatch: [
       'src/less/bootswatch/'

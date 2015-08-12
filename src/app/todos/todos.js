@@ -25,9 +25,29 @@ angular.module( 'taemon.todos', [
 
   $scope.newTodo = {};
   $scope.todos = [];
+  $scope.Todo = Todo;
   
   Todo.findAll();
   Todo.bindAll({}, $scope, 'todos');
+  
+  $scope.submit = function(todo) {
+    console.log('submitting', todo);
+    if(todo.id) {
+      Todo.update(todo.id, { name: todo.name, complete: todo.complete });
+    } else {
+      Todo.add(todo);
+    }
+  };
+  
+  $scope.add = function (todo) {
+    return Todo.create(todo).then(function() {
+      $scope.newTodo = {};
+    });
+  };
+
+  $scope.remove = function (todo) {
+    return Todo.destroy(todo.id);
+  };
   
   $scope.hoverIn = function() {
     this.hovering = true;

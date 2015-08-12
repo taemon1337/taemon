@@ -1,0 +1,14 @@
+<div class="form">
+    <div class="modal-header">
+        <button type="button" ng-click="close()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Add Link</h4>
+    </div>
+    <div class="modal-body" style="margin:-20px 35px;">
+        <formly-form model="link" fields="linkFields" form="linkForm"></formly-form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-click="save(link)" ng-disabled="linkForm.$invalid">Submit</button>
+        <button type="button" class="btn btn-primary" ng-click="addSubLink(link)">Add Dropdown Link</button>
+        <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    </div>
+</div>

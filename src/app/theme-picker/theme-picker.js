@@ -37,7 +37,7 @@ angular.module( 'taemon.themepicker', [
     { name: 'yeti',       link: 'assets/bootswatch/yeti.min.css' }
   ];
   
-  $scope.theme = $scope.themeTree[0];
+  $scope.theme = null;
   
   $scope.setTheme = function(theme) {
     $scope.theme = theme;
@@ -48,6 +48,11 @@ angular.module( 'taemon.themepicker', [
     ;
   };
   
+  $scope.randomTheme = function() {
+    return $scope.themeTree[Math.floor(Math.random()*$scope.themeTree.length)];
+  };
+  
+  $scope.setTheme($scope.randomTheme()); // set random theme
 })
 
 ;

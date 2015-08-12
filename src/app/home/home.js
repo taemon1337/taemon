@@ -20,7 +20,9 @@ angular.module( 'taemon.home', [
   'taemon.navbar',
   'taemon.oauth',
   'taemon.sayLetter',
-  'taemon.themepicker'
+  'taemon.themepicker',
+  'taemon.modular',
+  'taemon.feats'
 ])
 
 /**

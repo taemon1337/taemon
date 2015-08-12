@@ -7,13 +7,16 @@ angular.module( 'taemon', [
   'js-data'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, DSHttpAdapterProvider ) {
-  DSHttpAdapterProvider.defaults.basePath = "/taemon"; // set base path for entire app
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, DSFirebaseAdapterProvider ) {
   $urlRouterProvider.otherwise( '/' );
+  var basePath = 'https://taemon.firebaseio.com';
+  DSFirebaseAdapterProvider.defaults.basePath = basePath;
+  
 })
 
-.run( function run ( DS, DSHttpAdapter) {
-  DS.registerAdapter('http',DSHttpAdapter, {});
+.run( function run ( DS, DSFirebaseAdapter ) {
+//  DS.registerAdapter('http',DSHttpAdapter, {});
+  DS.registerAdapter('firebase', DSFirebaseAdapter, { 'default': true });
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
