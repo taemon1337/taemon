@@ -1,27 +1,38 @@
 angular.module( 'taemon.oauth', [
-  'ui.router',
-  'placeholders',
+  'js-data',
   'ui.bootstrap',
-  'ngStorage',
-  'oauth'
+  'taemon.navbar'
 ])
 
-.config(function config( $stateProvider ) {
-  $stateProvider
-    .state('oauth', {
-      parent: 'home.navbar',
-      views: {
-        "oauth": {
-          controller: "OauthCtrl",
-          templateUrl: "oauth/oauth.tpl.html"
-        }
-      }
-    })
-  ;
+.config(function config( $stateProvider, DSFirebaseAdapterProvider ) {
+
 })
 
-.controller( 'OauthCtrl', function OauthCtrl( $scope ) {
-
+.controller('OauthCtrl', function OauthCtrl( $scope ) {
+  
+  $scope.providerTree = [
+    { name: 'google', link: 'login({ provider: "google" })' }
+  ];
+  
+  $scope.loginWith = function(provider) {
+    var ref = new Firebase('https://taemon.firebaseio.com/web/uauth');
+    var deferred = $.Deferred();
+  
+    ref.authWithOAuthPopup(provider, function (err, user) {
+        if (err) {
+            console.error("ERROR: ", err);
+            deferred.reject(err);
+        }
+  
+        if (user) {
+          console.log('LOGGED IN', user);
+          deferred.resolve(user);
+        }
+    });
+  
+    return deferred.promise();
+  };
+  
 })
 
 ;
