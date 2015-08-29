@@ -8,10 +8,10 @@ angular.module( 'taemon.modular', [
 .config(function config( $stateProvider ) {
   $stateProvider
     .state( 'modular', {
-      parent: 'home',
+      parent: 'admin',
       url: '/modular',
       views: {
-        "main@": {
+        "admin-main": {
           controller: 'ModularCtrl',
           templateUrl: 'modular/modular.tpl.html'
         }

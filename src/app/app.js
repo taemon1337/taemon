@@ -3,7 +3,7 @@ angular.module( 'taemon', [
   'templates-common',
   'taemon.landingpage',
   'taemon.home',
-  'taemon.oauth',
+  'taemon.login',
   'ui.router',
   'js-data'
 ])
@@ -15,7 +15,7 @@ angular.module( 'taemon', [
   
 })
 
-.run( function run ( DS, DSFirebaseAdapter ) {
+.run( function run ( $rootScope, $location, $state, DS, DSFirebaseAdapter ) {
 //  DS.registerAdapter('http',DSHttpAdapter, {});
   DS.registerAdapter('firebase', DSFirebaseAdapter, { 'default': true });
   
@@ -29,6 +29,7 @@ angular.module( 'taemon', [
     // Inject items into the store when they're added to Firebase
     // Update items in the store when they're modified in Firebase
     ref.on('child_changed', function (dataSnapshot) {
+      console.log('child changed');
       var data = dataSnapshot.val();
       if (data[Resource.idAttribute]) {
         Resource.inject(data);

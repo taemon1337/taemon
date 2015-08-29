@@ -21,27 +21,42 @@ angular.module( 'taemon.todos', [
   ;
 })
 
-.controller( 'TodosCtrl', function TodosCtrl( $scope, Todo ) {
+.controller( 'TodosCtrl', function TodosCtrl( $scope, $rootScope, Todo ) {
 
-  $scope.newTodo = {};
-  $scope.todos = [];
-  $scope.Todo = Todo;
+  $scope.getNewTodo = function(attrs) { 
+    return angular.extend({
+      name: '', 
+      owner: $rootScope.current_user.uid, 
+      complete: false, 
+      created_at: Firebase.ServerValue.TIMESTAMP 
+    }, attrs);
+  };
+  $scope.newTodo = $scope.getNewTodo({});
+  //$scope.todos = [];
   
   Todo.findAll();
   Todo.bindAll({}, $scope, 'todos');
   
   $scope.submit = function(todo) {
-    if(Todo.lastSaved(todo.id)) {
+    if(todo.id) {
       Todo.update(todo.id, { name: todo.name, complete: todo.complete });
     } else {
-      Todo.create(todo).then(function() { $scope.newTodo = {}; });
+      Todo.create(angular.copy(todo)).then(
+        function() { $scope.newTodo = $scope.getNewTodo({}); },
+        function(err) { console.error('ERROR CREATING TODO: ', err); }
+      );
     }
+    $scope.newTodo = $scope.getNewTodo({});
   };
   
   $scope.add = function (todo) {
     return Todo.create(todo).then(function() {
-      $scope.newTodo = {};
+      $scope.newTodo = $scope.getNewTodo({});
     });
+  };
+  
+  $scope.complete = function(todo) {
+    Todo.update(todo.id, { complete: !todo.complete });
   };
 
   $scope.remove = function (todo) {

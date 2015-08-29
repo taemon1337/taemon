@@ -5,7 +5,8 @@ angular.module( 'Feat', ['js-data'])
   return DS.defineResource({
     name: 'feats',
     relations: {},
-    computed: {}
+    computed: {},
+    test: function() { alert('hi'); }
   });
 })
 ;

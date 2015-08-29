@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-md-3">
+    <nav data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+      <ul class="nav">
+        <li ng-repeat="link in links">
+          <a href ui-sref="{{ link.link }}">{{ link.name }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div ui-view="admin-main" class="col-xs-12 col-md-9">
+    <h1>Admin</h1>
+  </div>
+</div>

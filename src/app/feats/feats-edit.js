@@ -41,16 +41,15 @@ angular.module( 'taemon.feats.edit', [
 .run(function run( $modal ) {
 })
 
-.controller( 'FeatsEditCtrl', function FeatsEditCtrl( $scope, $stateParams, $modalInstance, Feat ) {
+.controller( 'FeatsEditCtrl', function FeatsEditCtrl( $scope, $rootScope, $stateParams, $modalInstance, Feat ) {
 
   $scope.saving = false;
   $scope.isNew = $stateParams.id ? false : true;
+  $scope.feat = { name: '', description: '', rules: '', votes: 0, user_id: $rootScope.current_user.uid };
 
-  if($scope.isNew) {
-    $scope.feat = { name: '', description: '', rules: [], votes: 0 };
-  } else {
-    $scope.feat = Feat.get($stateParams.id);
-  }
+  Feat.find($stateParams.id).then(function(feat) {
+    $scope.feat = feat;
+  });
 
   $scope.fields = [
     {
@@ -70,16 +69,15 @@ angular.module( 'taemon.feats.edit', [
         label: 'Description',
         placeholder: 'describe the feat...'
       }
-    }
-    /*
+    },
     {
       key: 'rules',
-      type: 'array',
+      type: 'textarea',
       templateOptions: {
-        
+        label: 'Rules / Details',
+        placeholder: 'enter rules, scoring, match-ups, or any other detailed information...'
       }
     }
-    */
   ];
 
   $scope.close = function() {
@@ -91,7 +89,9 @@ angular.module( 'taemon.feats.edit', [
     if($scope.isNew) {
       Feat.create($scope.feat).then(function() { $scope.saving = false; $modalInstance.close(); });
     } else {
-      Feat.update($scope.feat.id, { id: $scope.feat.id, name: $scope.feat.name, description: $scope.feat.description }).then(function() { $scope.saving = false; $modalInstance.close(); });
+      var attrs = {};
+      $scope.fields.map(function(f) { attrs[f.key] = $scope.feat[f.key]; });
+      Feat.update($scope.feat.id, attrs ).then(function() { $scope.saving = false; $modalInstance.close(); });
     }
   };
   

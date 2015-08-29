@@ -26,11 +26,12 @@ angular.module( 'taemon.blogs', [
 
 .controller( 'BlogsCtrl', function BlogsCtrl( $scope, Blog ) {
   
-  $scope.blogs = [];
+  Blog.findAll();
+  Blog.bindAll({}, $scope, 'blogs');
   
   $scope.aceLoaded = function( _editor ) {
-    var firebaseRef = new Firebase('https://taemon.firebaseio.com/blogs');
-    var firepad = Firepad.fromACE( firebaseRef, _editor, { defaultText: 'enter here...' } );
+    //var firebaseRef = new Firebase('https://taemon.firebaseio.com/users/');
+    //var firepad = Firepad.fromACE( firebaseRef, _editor, { defaultText: 'enter here...' } );
   };
   
 })

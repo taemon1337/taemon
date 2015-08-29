@@ -8,8 +8,9 @@ angular.module( 'taemon.navbar', [
 .config(function config( $stateProvider ) {
 })
 
-.controller( 'NavbarCtrl', function NavbarCtrl( $scope ) {
+.controller( 'NavbarCtrl', function NavbarCtrl( $scope, $rootScope ) {
   
+  $scope.user = $rootScope.current_user;
   $scope.isCollapsed = false;
   $scope.brandImage = "assets/img/mgs-fox.png";
   
@@ -27,19 +28,12 @@ angular.module( 'taemon.navbar', [
     { name: 'Plex Upload', link: 'plexup' },
     { name: 'Plex Media', link: 'plexer' },
     { name: 'Croudea', link: 'croudea' },
-    { name: 'Leet', link: 'leet' }
+    { name: 'Leet', link: 'leet' },
+    { name: 'Gmail Test', link: 'gmail' }
   ];
   
   $scope.babyTree = [
     { name: 'Say the letter', link: 'say-letter' }
-  ];
-  
-  $scope.cogTree = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Docker Manager', link: 'docker' },
-    { name: 'Module Manager', link: 'modman' },
-    { name: 'Module Builder', link: 'modular' },
-    { name: 'OAuth', link: 'oauth' }
   ];
   
 })

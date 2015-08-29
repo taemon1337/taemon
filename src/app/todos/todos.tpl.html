@@ -6,7 +6,7 @@
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="todo in [newTodo]" ng-init="editing = true;" ng-include="'todo-item-template'"></li>
       
-      <li class="list-group-item" ng-repeat="todo in todos" ng-include="'todo-item-template'"></li>
+      <li class="list-group-item" ng-repeat="todo in todos | orderBy: '-created_at' " ng-include="'todo-item-template'"></li>
     </ul>
 
   </div>
@@ -16,12 +16,12 @@
   <div class="row" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
     <div class="col-xs-2">
       <span ng-hide="todo.id" ng-click="submit(todo)" class="fa fa-3x fa-plus-square-o pointer"></span>
-      <span ng-hide="editing" ng-click="Todo.update(todo.id, { complete: !todo.complete })" ng-class="{ 'fa-square-o': !todo.complete, 'fa-check-square-o': todo.complete }" class="fa fa-3x pointer"></span>
+      <span ng-hide="editing" ng-click="complete(todo)" ng-class="{ 'fa-square-o': !todo.complete, 'fa-check-square-o': todo.complete }" class="fa fa-3x pointer"></span>
     </div>
     
     <div class="col-xs-8" ng-dblclick="editing = !editing">
       <form ng-show="editing" ng-submit="submit(todo)">
-        <input type='text' class='form-control full input-lg' ng-model="name" placeholder="What needs to be done?" />
+        <input type='text' class='form-control full input-lg' ng-model="todo.name" placeholder="What needs to be done?" />
       </form>
       <h6 ng-show="!editing" ng-class="{ 'strikethrough': todo.complete }" class="fa-2x">{{ todo.name }}</h6>
     </div>

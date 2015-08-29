@@ -25,6 +25,8 @@ angular.module( 'taemon.feats', [
 
 .controller( 'FeatsCtrl', function FeatsCtrl( $scope, $state, Feat ) {
 
+  window.Feat = Feat;
+
   $scope.feats = [];
   Feat.findAll();
   Feat.bindAll({}, $scope, 'feats');

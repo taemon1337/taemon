@@ -44,16 +44,15 @@
           </li>
       </ul>
       
-      <div ui-view="oauth"></div>
+      <div ui-view="login"></div>
       <div ui-view="theme-picker"></div>
 
       <ul class="nav navbar-nav pull-right">
-        <li dropdown>
-          <a href="#" dropdown-toggle>
+        <li ng-show="user.role.admin">
+          <a href ui-sref="admin">
+            Admin
             <i class="fa fa-cog"></i>
-            <span class='caret'></span>
           </a>
-          <tree class="pull-right" tree='cogTree'></tree>
         </li>
       </ul>
   </div>

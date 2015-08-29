@@ -14,15 +14,17 @@
  */
 angular.module( 'taemon.home', [
   'ui.router',
+  'taemon.admin',
+  'taemon.settings',
   'taemon.about',
   'taemon.blogs',
   'taemon.todos',
   'taemon.navbar',
-  'taemon.oauth',
+  'taemon.login',
   'taemon.sayLetter',
   'taemon.themepicker',
-  'taemon.modular',
-  'taemon.feats'
+  'taemon.feats',
+  'taemon.gmail'
 ])
 
 /**
@@ -43,9 +45,9 @@ angular.module( 'taemon.home', [
           controller: "NavbarCtrl",
           templateUrl: "navbar/navbar.tpl.html"
         },
-        "oauth@home": {
-          controller: "OauthCtrl",
-          templateUrl: "oauth/oauth.tpl.html"
+        "login@home": {
+          controller: "LoginCtrl",
+          templateUrl: "login/login.tpl.html"
         },
         "theme-picker@home": {
           controller: "ThemePickerCtrl",

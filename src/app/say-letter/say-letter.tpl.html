@@ -9,6 +9,7 @@
         <span ng-show="state == 'waiting'" class="fa fa-spinner fa-spin fa-5x"></span>
         
         <div ng-click="start()" ng-show="state == 'started'" style="font-size:350px;margin-top:-50px;">
+          <span>{{ current.toUpperCase() }}</span>
           <span>{{ current }}</span>
         </div>
         

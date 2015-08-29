@@ -1,0 +1,33 @@
+<ul class="nav navbar-nav pull-right">
+  <li ng-show="user" dropdown>
+    <a href="#" dropdown-toggle style="padding:0;">
+      <img ng-src="{{ user.profileImageURL }}" 
+        title="{{ user.displayName }}" 
+        style="height:50px;padding:0;margin:0;" 
+      />
+      <span class='caret'></span>
+    </a>
+    
+    <ul class="dropdown-menu pull-right" aria-labelledby="user-dropdown">
+      <li>
+        <a ui-sref="profile">My Profile</a>
+      </li>
+      <li>
+        <a href ng-click="logout()">Logout</a>
+      </li>
+    </ul>
+  </li>
+  
+  <li ng-hide="user" dropdown>
+    <a href="#" dropdown-toggle>
+        Sign in
+        <span class='caret'></span>
+    </a>
+    
+    <ul class="dropdown-menu pull-right" aria-labelledby="prodivers-dropdown">
+      <li ng-repeat="provider in providerTree">
+        <a href ng-click="loginWith(provider.name)">Login with {{ provider.name }}</a>
+      </li>
+    </ul>
+  </li>
+</ul>
